@@ -27,36 +27,31 @@
 		</div>
 		<div id="body">
 			<div id="content">
-				<div id="article">
-					<h1>News</h1>
-					<h2>This is just a place holder.</h2>
-					<span>Date: May 09, 2012</span>
-					<span>Posted by: Juliet Khan</span>
-					<p>
-						Phasellus eleifend fringilla gravida. Etiam ultrices convallis sodales. Proin id quam ante, sed dignissim mi. Sed cursus nulla vel turpis convallis ultricies. Cras nec velit nec turpis aliquet aliquet id imperdiet libero. Integer dolor turpis, fringilla a porttitor quis, congue non eros. Integer lobortis auctor dolor sed convallis. Nullam egestas semper leo id adipiscing. Nulla neque lectus, viverra sit amet pulvinar ut, tempus rutrum felis. Ut eget condimentum quam.
+				<h1>Productos</h1>
+				<h3><strong>Todos los productos de nuestras plantaciones</strong></h3>
+				<p>
+					En esta página encontrarás todos los productos con los que nuestros agricultores trabajan. Actualmente contamos con tres fantásticos tipos de productos.
 					</p>
-					<p>
-						Ut in odio quam, eu convallis magna. Nunc pharetra, tortor et tincidunt commodo, velit sem ullamcorper libero, id pharetra ligula magna at risus. Duis pellentesque consequat tincidunt. Nam elementum interdum gravida. Morbi risus velit, molestie sit amet mattis quis, venenatis et turpis. Donec faucibus quam eu nisl suscipit venenatis. Donec elementum, massa non vulputate fringilla, dolor odio tristique nisi, dapibus consectetur nunc erat ut tortor.
-					</p>
-					<p>
-						Fusce fringilla blandit augue dapibus lobortis. Integer pulvinar convallis pretium. Phasellus imperdiet vehicula tristique. Sed vestibulum pharetra metus, sit amet placerat dolor ullamcorper vel. Donec euismod hendrerit vehicula. Nullam interdum massa quis mi pharetra a mattis magna volutpat.
-					</p>
-					<p>
-						Donec in lorem in eros pulvinar cursus sit amet non magna. Etiam in leo sed nulla aliquam ornare vel eu erat. Pellentesque ipsum neque, lobortis at interdum vel, iaculis vel mi. Pellentesque augue arcu, pharetra vel sodales nec, tempus ac elit. Vestibulum ante ante, lobortis et iaculis eu, porttitor ut leo. Phasellus sagittis ultricies dolor et aliquet. Sed elementum vulputate diam, in consectetur erat hendrerit sit amet. Morbi molestie egestas est id rutrum. Maecenas ornare, augue vitae adipiscing ultrices, purus orci pretium nibh, vitae pharetra dolor nisi in metus.
-					</p>
-				</div>
-				<div id="sidebar">
-					<div>
-						<h3>Tratamientos</h3>
-						<ul>
-							<li>
-								<a href="article.html">Tratamientos actuales</a>
-							</li>
-						</ul>
-					</div>
-				</div>
+				<ul class="section">
+					<li th:each="tratamiento : ${tratamientos}">
+						<img src="images/plants1.jpg" alt="Image">
+						<div>
+							<h2 th:text="${tratamiento.numeroLote}"></h2>
+							<br/>
+							<p th:text="'Producto relacionado: ' + ${tratamiento.producto.nombre}"></p>
+							<br/>
+							<p th:text="'Cultivo relacionado: ' + ${tratamiento.cultivo.especie}"></p>
+							<br/>
+							<p th:text="'Fecha realizacion: ' + ${tratamiento.fechaRealizacion}"></p>
+							<br/>
+							<p th:text="'Fecha plazo reentrada: ' + ${tratamiento.fechaPlazoReentrada}"></p>
+							<br/>
+							<p th:text="'Fecha plazo recoleccion: ' + ${tratamiento.fechaPlazoRecoleccion}"></p>
+							<br/>
+						</div>
+					</li>
+				</ul>
 			</div>
-		</div>
 		<div id="footer">
 			<div>
 				<div>

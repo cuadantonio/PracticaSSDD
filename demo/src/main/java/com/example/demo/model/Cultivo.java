@@ -1,7 +1,6 @@
 package com.example.demo.model;
 
 import java.time.LocalDate;
-import java.util.LinkedList;
 import java.util.List;
 
 import javax.persistence.ElementCollection;
@@ -24,7 +23,7 @@ public class Cultivo {
 	private List<Tratamiento> tratamientos;
 	
 	public Cultivo(String especie, String variedad, LocalDate fecha, String zona,
-			LinkedList<Tratamiento> tratamientos) {
+			List<Tratamiento> tratamientos) {
 		super();
 		this.especie = especie;
 		this.variedad = variedad;
@@ -32,7 +31,11 @@ public class Cultivo {
 		this.zona = zona;
 		this.tratamientos = tratamientos;
 	}
-
+	
+	public Cultivo() {
+		
+	}
+	
 	public String getEspecie() {
 		return especie;
 	}

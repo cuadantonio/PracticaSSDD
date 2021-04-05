@@ -22,6 +22,10 @@ public class Producto {
 		this.plazoReentrada = plazoReentrada;
 		this.plazoRecoleccion = plazoRecoleccion;
 	}
+	
+	public Producto() {
+		
+	}
 
 	public String getNombre() {
 		return nombre;

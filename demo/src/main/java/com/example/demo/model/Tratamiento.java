@@ -32,6 +32,9 @@ public class Tratamiento {
 		this.fechaPlazoReentrada = fechaPlazoReentrada;
 		this.fechaPlazoRecoleccion = fechaPlazoRecoleccion;
 	}
+	public Tratamiento() {
+		
+	}
 
 	public Cultivo getCultivo() {
 		return cultivo;

@@ -33,21 +33,22 @@
 					En esta página encontrarás todos los cultivos con los que nuestros agricultores trabajan. Actualmente contamos con tres fantásticos tipos de plantaciones que alimentan de productos a sus supermercados favoritos.
 					</p>
 				<ul class="section">
-					<li th:each="producto : ${cultivos}">
+					<li th:each="cultivo : ${cultivos}">
 						<img src="images/plants1.jpg" alt="Image">
 						<div>
-							<h2 th:text="${producto.nombre}"></h2>
-							<p>
-							<b>Variedad:</b> Flor
-							</p>
-							<p>
-							<b>Fecha:</b> 23/07/2019
-							</p>
-							<p>
-							<b>Zona:</b> Jardín de Logroño
-							</p>
+							<h2 th:text="${cultivo.especie}"></h2>
+							<br/>
+							<p th:text="'Variedad: ' + ${cultivo.variedad}"></p>
+							<br/>
+							<p th:text="'Fecha: ' + ${cultivo.fecha}"></p>
+							<br/>
+							<p th:text="'Zona: ' + ${cultivo.zona}"></p>
+							<br/>
 							<p>
 							Lista:
+							<select th:each="tratamiento : ${cultivo.tratamientos}">
+								<option><span th:text="${tratamiento.numeroLote}"></span></option>
+							</select>
 							</p>
 						</div>
 					</li>
