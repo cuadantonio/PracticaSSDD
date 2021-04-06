@@ -75,4 +75,14 @@ public class Cultivo {
 	public void setTratamientos(List<Tratamiento> tratamientos) {
 		this.tratamientos = tratamientos;
 	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
+	
+	
 }

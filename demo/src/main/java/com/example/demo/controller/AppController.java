@@ -3,12 +3,14 @@ package com.example.demo.controller;
 import java.time.LocalDate;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 import javax.annotation.PostConstruct;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.example.demo.model.Cultivo;
@@ -61,5 +63,16 @@ public class AppController {
 		List<Tratamiento> listataux = repTratamientos.findAll();
 		model.addAttribute("tratamientos", listataux);
 		return "Tratamientos";
+	}
+	@RequestMapping("/cultivos/{id}")
+	public String mainCultivo(@PathVariable long id, Model model) {
+		//Optional<Cultivo> cultivo = repCultivos.findById(id);
+		//if(cultivo.isPresent()) {
+			//model.addAttribute("cultivo",cultivo.get());
+			//return "maincultivo";
+		//}
+		List<Cultivo> listac = repCultivos.findAll();
+		model.addAttribute("cultivos",listac);
+		return "maincultivo";
 	}
 }

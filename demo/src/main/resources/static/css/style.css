@@ -581,3 +581,5 @@ p a:hover {
 	text-align: center;
 	text-shadow: 1px 1px 1px #8da181;
 }
+
+.izquierda { text-align: left; }
