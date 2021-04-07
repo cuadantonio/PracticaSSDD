@@ -80,7 +80,7 @@ public class AppController {
 	}
 	@RequestMapping("/editarcultivo/{id}")
 	public String editarCultivo(@PathVariable long id, Model model) {
-		model.addAttribute("idnum",id);
+		model.addAttribute("id",id);
 		return "editarcultivo";
 	}
 	@RequestMapping("/cultivoeditado")
@@ -110,4 +110,85 @@ public class AppController {
 		repCultivos.save(cultivo);
 		return "cultivoañadido";
 	}
+	@RequestMapping("/tratamientos/{id}")
+	public String mainTratamiento(@PathVariable long id, Model model) {
+		Optional<Tratamiento> tratamiento = repTratamientos.findById(id);
+		if(tratamiento.isPresent()) {
+			model.addAttribute("tratamiento",tratamiento.get());
+			model.addAttribute("producto",tratamiento.get().getProducto());
+			model.addAttribute("cultivo",tratamiento.get().getCultivo());
+			return "maintratamiento";
+		}
+		return "Tratamientos";
+	}
+	@RequestMapping("/añadirtratamiento")
+	public String añadirTratamiento(Model model) {
+		List<Cultivo> listac = repCultivos.findAll();
+		List<Producto> listap = repProductos.findAll();
+		model.addAttribute("cultivos",listac);
+		model.addAttribute("productos",listap);
+		return "añadirtratamiento";
+	}
+	@RequestMapping("/tratamientoañadido")
+	public String tratamientoAñadido(@RequestParam String producto, @RequestParam String cultivo, @RequestParam String numeroLote,@RequestParam String fechaRealizacion, Model model) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		//convert String to LocalDate
+		LocalDate localDate = LocalDate.parse(fechaRealizacion, formatter);
+		Producto paux = repProductos.findBynombre(producto);
+		Cultivo caux = repCultivos.findByespecie(cultivo);
+		Long reentrada = Long.valueOf(paux.getPlazoReentrada());
+		Long recoleccion = Long.valueOf(paux.getPlazoRecoleccion());
+		LocalDate fechaReentrada = localDate.plusDays(reentrada);
+		LocalDate fechaRecoleccion = localDate.plusDays(recoleccion);
+		Tratamiento trat = new Tratamiento(caux,paux,numeroLote,localDate,fechaReentrada,fechaRecoleccion);
+		repTratamientos.save(trat);
+		caux.getTratamientos().add(trat);
+		repCultivos.save(caux);
+		return "tratamientoañadido";
+	}
+	@RequestMapping("/editartratamiento/{id}")
+	public String editarTratamiento(@PathVariable long id, Model model) {
+		model.addAttribute("id",id);
+		List<Cultivo> listac = repCultivos.findAll();
+		List<Producto> listap = repProductos.findAll();
+		model.addAttribute("cultivos",listac);
+		model.addAttribute("productos",listap);
+		return "editartratamiento";
+	}
+	@RequestMapping("/tratamientoeditado")
+	public String tratamientoEditado(@RequestParam String producto, @RequestParam String cultivo, @RequestParam String numeroLote,@RequestParam String fechaRealizacion, @RequestParam Long id, Model model) {
+		Optional<Tratamiento> trat = repTratamientos.findById(id);
+		Cultivo caux = trat.get().getCultivo();
+		caux.getTratamientos().remove(trat.get());
+		repCultivos.save(caux);
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		//convert String to LocalDate
+		LocalDate localDate = LocalDate.parse(fechaRealizacion, formatter);
+		Producto paux = repProductos.findBynombre(producto);
+		Cultivo caux2 = repCultivos.findByespecie(cultivo);
+		Long reentrada = Long.valueOf(paux.getPlazoReentrada());
+		Long recoleccion = Long.valueOf(paux.getPlazoRecoleccion());
+		LocalDate fechaReentrada = localDate.plusDays(reentrada);
+		LocalDate fechaRecoleccion = localDate.plusDays(recoleccion);
+		trat.get().setCultivo(caux2);
+		trat.get().setProducto(paux);
+		trat.get().setNumeroLote(numeroLote);
+		trat.get().setFechaPlazoReentrada(fechaReentrada);
+		trat.get().setFechaPlazoRecoleccion(fechaRecoleccion);
+		trat.get().setFechaRealizacion(localDate);
+		repTratamientos.save(trat.get());
+		caux2.getTratamientos().add(trat.get());
+		repCultivos.save(caux2);
+		return "tratamientoeditado";
+	}
+	@RequestMapping("/productos/{id}")
+	public String mainProducto(@PathVariable long id, Model model) {
+		Optional<Producto> producto = repProductos.findById(id);
+		if(producto.isPresent()) {
+			model.addAttribute("producto",producto.get());
+			return "mainproducto";
+		}
+		return "Productos";
+	}
 }
+

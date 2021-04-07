@@ -14,53 +14,48 @@
 				<li>
 					<a href="/">Home</a>
 				</li>
-				<li class="current">
+				<li>
 					<a href="/cultivos">Cultivos</a>
 				</li>
 				<li>
 					<a href="/productos">Productos</a>
 				</li>
-				<li>
+				<li  class="current">
 					<a href="/tratamientos">Tratamientos</a>
 				</li>
 			</ul>
 		</div>
 		<div id="body">
 			<div id="content">
-				<form method="post" action="/cultivoeditado">
+				<form method="post" action="/tratamientoeditado">
 				 <div class="form-group">
-                    <label>Nueva Especie</label>
+                    <label>Nuevo Producto</label>
+                    <select name="producto">
+                        <option th:each="producto : ${productos}"><span th:text="${producto.nombre}"></span></option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>Nuevo Cultivo</label>
+                    <select name="cultivo">
+                        <option th:each="cultivo : ${cultivos}"><span th:text="${cultivo.especie}"></span></option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Nuevo Numero de lote</label>
                     <input
                             type="text"
-                            name="especie"
+                            name="numeroLote"
                             class="form-control"
                             placeholder="especie"
                             required/>
                 </div>
                 <div class="form-group">
-                    <label>Nueva Variedad</label>
+                    <label>Nueva Fecha Realizacion</label>
                     <input
-                            type="text"
-                            name="variedad"
-                            class="form-control"
-                            placeholder="especie"
-                            required/>
-                </div>
-                <div class="form-group">
-                    <label>Nueva Fecha</label>
-                    <input
-                            name="fecha"
+                            name="fechaRealizacion"
                             type="datetime-local"
                             class="form-control"
-                            required/>
-                </div>
-                <div class="form-group">
-                    <label>Nueva Zona</label>
-                    <input
-                            type="text"
-                            name="zona"
-                            class="form-control"
-                            placeholder="especie"
                             required/>
                 </div>
                 <div class="control-group">

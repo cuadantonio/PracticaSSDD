@@ -14,10 +14,10 @@
 				<li>
 					<a href="/">Home</a>
 				</li>
-				<li class="current">
+				<li>
 					<a href="/cultivos">Cultivos</a>
 				</li>
-				<li>
+				<li class="current">
 					<a href="/productos">Productos</a>
 				</li>
 				<li>
@@ -27,28 +27,21 @@
 		</div>
 		<div id="body">
 			<div id="content">
-				<h1>Cultivo</h1>
+				<h1>Producto</h1>
 				<br/>
 				<br/>
 				<ul class="section">
 					<li>
 						<div>
-							<h2 th:text="'Especie: ' + ${cultivo.especie}"></h2>
+							<h2 th:text="'Nombre: ' + ${producto.nombre}"></h2>
 							<br/>
-							<p th:text="'Variedad: ' + ${cultivo.variedad}"></p>
+							<p th:text="'Descripcion: ' + ${producto.descripcion}"></p>
 							<br/>
-							<p th:text="'Fecha: ' + ${cultivo.fecha}"></p>
+							<p th:text="'Plazo reentrada: ' + ${producto.plazoReentrada}"></p>
 							<br/>
-							<p th:text="'Zona: ' + ${cultivo.zona}"></p>
+							<p th:text="'Plazo recoleccion: ' + ${producto.plazoRecoleccion}"></p>
 							<br/>
-							<p>Lista: </p>
-							<ul>
-								<li th:each="tratamiento : ${cultivo.tratamientos}">
-										<a th:href="@{'/tratamientos/'+ ${tratamiento.id}}"><span th:text="${tratamiento.numeroLote}"></span></a>
-								</li>
-							</ul>
-							<br/>
-							<a th:href="@{'/editarcultivo/'+ ${cultivo.id}}">Editar Cultivo</a>
+							<a th:href="@{'/editarproducto/'+ ${producto.id}}">Editar Producto</a>
 							<a href="/">Volver</a>
 						</div>
 					</li>

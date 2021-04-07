@@ -27,16 +27,16 @@
 		</div>
 		<div id="body">
 			<div id="content">
-				<h1>Productos</h1>
+				<h1>Tratamientos</h1>
 				<h3><strong>Todos los productos de nuestras plantaciones</strong></h3>
 				<p>
-					En esta página encontrarás todos los productos con los que nuestros agricultores trabajan. Actualmente contamos con tres fantásticos tipos de productos.
+					En esta página encontrarás todos los tratamientos con los que nuestros agricultores trabajan.
 					</p>
 				<ul class="section">
 					<li th:each="tratamiento : ${tratamientos}">
 						<img src="images/plants1.jpg" alt="Image">
 						<div>
-							<h2 th:text="${tratamiento.numeroLote}"></h2>
+							<a th:href="@{'/tratamientos/'+ ${tratamiento.id}}"><h2 th:text="${tratamiento.numeroLote}"></h2></a>
 							<br/>
 							<p th:text="'Producto relacionado: ' + ${tratamiento.producto.nombre}"></p>
 							<br/>
@@ -51,6 +51,7 @@
 						</div>
 					</li>
 				</ul>
+				<a href="/añadirtratamiento">Añadir Tratamiento</a>
 			</div>
 		<div id="footer">
 			<div>

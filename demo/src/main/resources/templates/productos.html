@@ -31,13 +31,12 @@
 				<h1>Productos</h1>
 				<h3><strong>Todos los productos de nuestras plantaciones</strong></h3>
 				<p>
-					En esta página encontrarás todos los productos con los que nuestros agricultores trabajan. Actualmente contamos con tres fantásticos tipos de productos.
+					En esta página encontrarás todos los productos con los que nuestros agricultores trabajan.
 					</p>
 				<ul class="section">
 					<li th:each="producto : ${productos}">
-						<img src="images/plants1.jpg" alt="Image">
 						<div>
-							<h2 th:text="${producto.nombre}"></h2>
+							<a th:href="@{'/productos/'+ ${producto.id}}"><h2 th:text="${producto.nombre}"></h2></a>
 							<br/>
 							<p th:text="'Descripcion: ' + ${producto.descripcion}"></p>
 							<br/>
@@ -48,6 +47,7 @@
 						</div>
 					</li>
 				</ul>
+				<a href="/añadirproducto">Añadir Producto</a>
 			</div>
 		</div>
 		<div id="footer">

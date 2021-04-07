@@ -37,7 +37,7 @@
 				<ul class="section">
 					<li th:each="cultivo : ${cultivos}">
 						<div>
-							<a th:href="@{'/cultivos/'+ ${cultivo.id}}"><span th:text="${cultivo.especie}"></span></a>
+							<a th:href="@{'/cultivos/'+ ${cultivo.id}}"><h2 th:text="${cultivo.especie}"></h2></a>
 							<br/>
 							<p th:text="'Variedad: ' + ${cultivo.variedad}"></p>
 							<br/>

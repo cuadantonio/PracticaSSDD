@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Cultivo - Garden Walkthrough Website Template</title>
+	<title>Tratamiento - Garden Walkthrough Website Template</title>
 	<link rel="stylesheet" type="text/css" href="/css/style.css">
 </head>
 <body>
@@ -14,46 +14,22 @@
 				<li>
 					<a href="/">Home</a>
 				</li>
-				<li class="current">
+				<li>
 					<a href="/cultivos">Cultivos</a>
 				</li>
 				<li>
 					<a href="/productos">Productos</a>
 				</li>
-				<li>
+				<li class="current">
 					<a href="/tratamientos">Tratamientos</a>
 				</li>
 			</ul>
 		</div>
 		<div id="body">
 			<div id="content">
-				<h1>Cultivo</h1>
-				<br/>
-				<br/>
-				<ul class="section">
-					<li>
-						<div>
-							<h2 th:text="'Especie: ' + ${cultivo.especie}"></h2>
-							<br/>
-							<p th:text="'Variedad: ' + ${cultivo.variedad}"></p>
-							<br/>
-							<p th:text="'Fecha: ' + ${cultivo.fecha}"></p>
-							<br/>
-							<p th:text="'Zona: ' + ${cultivo.zona}"></p>
-							<br/>
-							<p>Lista: </p>
-							<ul>
-								<li th:each="tratamiento : ${cultivo.tratamientos}">
-										<a th:href="@{'/tratamientos/'+ ${tratamiento.id}}"><span th:text="${tratamiento.numeroLote}"></span></a>
-								</li>
-							</ul>
-							<br/>
-							<a th:href="@{'/editarcultivo/'+ ${cultivo.id}}">Editar Cultivo</a>
-							<a href="/">Volver</a>
-						</div>
-					</li>
-				</ul>
+				<h1>El tratamiento ha sido añadido</h1>
 			</div>
+			<a href="/">Inicio</a>
 		</div>
 		<div id="footer">
 			<div>

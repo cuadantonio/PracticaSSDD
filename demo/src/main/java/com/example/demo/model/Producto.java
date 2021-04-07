@@ -58,6 +58,14 @@ public class Producto {
 	public void setPlazoRecoleccion(int plazoRecoleccion) {
 		this.plazoRecoleccion = plazoRecoleccion;
 	}
+
+	public long getId() {
+		return id;
+	}
+
+	public void setId(long id) {
+		this.id = id;
+	}
 	
 	
 }
