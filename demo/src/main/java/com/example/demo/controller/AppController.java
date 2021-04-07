@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Optional;
@@ -12,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.example.demo.model.Cultivo;
 import com.example.demo.model.Producto;
@@ -34,10 +36,13 @@ public class AppController {
 		Producto p = new Producto("producto","producto",10,10);
 		Cultivo c = new Cultivo("especie","variedad",date,"zona",listat);
 		Tratamiento t = new Tratamiento(c,p,"2",date,date,date);
+		Tratamiento t2 = new Tratamiento(c,p,"23",date,date,date);
 		repCultivos.save(c);
 		repProductos.save(p);
 		repTratamientos.save(t);
+		repTratamientos.save(t2);
 		c.getTratamientos().add(t);
+		c.getTratamientos().add(t2);
 		repCultivos.save(c);
 		
 	}
@@ -66,13 +71,43 @@ public class AppController {
 	}
 	@RequestMapping("/cultivos/{id}")
 	public String mainCultivo(@PathVariable long id, Model model) {
-		//Optional<Cultivo> cultivo = repCultivos.findById(id);
-		//if(cultivo.isPresent()) {
-			//model.addAttribute("cultivo",cultivo.get());
-			//return "maincultivo";
-		//}
-		List<Cultivo> listac = repCultivos.findAll();
-		model.addAttribute("cultivos",listac);
-		return "maincultivo";
+		Optional<Cultivo> cultivo = repCultivos.findById(id);
+		if(cultivo.isPresent()) {
+			model.addAttribute("cultivo",cultivo.get());
+			return "maincultivo";
+		}
+		return "cultivos";
+	}
+	@RequestMapping("/editarcultivo/{id}")
+	public String editarCultivo(@PathVariable long id, Model model) {
+		model.addAttribute("idnum",id);
+		return "editarcultivo";
+	}
+	@RequestMapping("/cultivoeditado")
+	public String cultivoEditado(@RequestParam String especie,@RequestParam String variedad,@RequestParam String fecha, @RequestParam String zona, @RequestParam Long id, Model model) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		//convert String to LocalDate
+		LocalDate localDate = LocalDate.parse(fecha, formatter);
+		Optional<Cultivo> cultivo = repCultivos.findById(id);
+		cultivo.get().setEspecie(especie);
+		cultivo.get().setVariedad(variedad);
+		cultivo.get().setFecha(localDate);
+		cultivo.get().setZona(zona);
+		repCultivos.save(cultivo.get());
+		return "cultivoeditado";
+	}
+	@RequestMapping("/añadircultivo")
+	public String añadirCultivo(Model model) {
+		return "añadircultivo";
+	}
+	@RequestMapping("/cultivoañadido")
+	public String cultivoAñadido(@RequestParam String especie,@RequestParam String variedad,@RequestParam String fecha, @RequestParam String zona, Model model) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		//convert String to LocalDate
+		LocalDate localDate = LocalDate.parse(fecha, formatter);
+		LinkedList<Tratamiento> listat = new LinkedList<>();
+		Cultivo cultivo = new Cultivo(especie,variedad,localDate,zona,listat);
+		repCultivos.save(cultivo);
+		return "cultivoañadido";
 	}
 }

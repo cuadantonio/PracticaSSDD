@@ -32,9 +32,11 @@
 				<p>
 					En esta página encontrarás todos los cultivos con los que nuestros agricultores trabajan. Actualmente contamos con tres fantásticos tipos de plantaciones que alimentan de productos a sus supermercados favoritos.
 					</p>
-				<ul class="section izquierda">
+				<br/>
+				<br/>
+				<ul class="section">
 					<li th:each="cultivo : ${cultivos}">
-						<div class="izquierda">
+						<div>
 							<a th:href="@{'/cultivos/'+ ${cultivo.id}}"><span th:text="${cultivo.especie}"></span></a>
 							<br/>
 							<p th:text="'Variedad: ' + ${cultivo.variedad}"></p>
@@ -46,6 +48,7 @@
 						</div>
 					</li>
 				</ul>
+				<a href="/añadircultivo">Añadir Cultivo</a>
 			</div>
 		</div>
 		<div id="footer">

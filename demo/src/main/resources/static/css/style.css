@@ -322,7 +322,7 @@ p a:hover {
 #body div#content ul.section {
 	list-style: none;
 	margin: 0;
-	padding: 29px 0 0;
+	padding: 0 0 0;
 }
 #body div#content ul.section li {
 	margin: 35px 0 0;
@@ -333,7 +333,7 @@ p a:hover {
 	float: left;
 }
 #body div#content ul.section li div {
-	float: right;
+	float: left;
 	width: 520px;
 }
 #body div#content ul.section li div h2,
@@ -345,7 +345,7 @@ p a:hover {
 	margin: 0;
 }
 #body div#content ul.section li div p {
-	padding: 23px 0 0;
+	padding: 0 0 0;
 }
 #body div#content form {
 	margin: 0;
@@ -581,5 +581,3 @@ p a:hover {
 	text-align: center;
 	text-shadow: 1px 1px 1px #8da181;
 }
-
-.izquierda { text-align: left; }
