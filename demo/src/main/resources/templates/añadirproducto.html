@@ -17,48 +17,49 @@
 				<li>
 					<a href="/cultivos">Cultivos</a>
 				</li>
-				<li>
+				<li class="current">
 					<a href="/productos">Productos</a>
 				</li>
-				<li  class="current">
+				<li>
 					<a href="/tratamientos">Tratamientos</a>
 				</li>
 			</ul>
 		</div>
 		<div id="body">
 			<div id="content">
-				<form method="post" action="/tratamientoeditado">
+				<form method="post" action="/productoañadido">
 				 <div class="form-group">
-                    <label>Nuevo Producto</label>
-                    <select name="producto">
-                        <option th:each="producto : ${productos}"><span th:text="${producto.nombre}"></span></option>
-                    </select>
-                </div>
-                
-                <div class="form-group">
-                    <label>Nuevo Cultivo</label>
-                    <select name="cultivo">
-                        <option th:each="cultivo : ${cultivos}"><span th:text="${cultivo.especie}"></span></option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label>Nuevo Numero de lote</label>
+                    <label>Nombre</label>
                     <input
                             type="text"
-                            name="numeroLote"
+                            name="nombre"
                             class="form-control"
-                            placeholder="especie"
                             required/>
                 </div>
                 <div class="form-group">
-                    <label>Nueva Fecha Realizacion</label>
+                    <label>Descripcion</label>
                     <input
-                            name="fechaRealizacion"
-                            type="datetime-local"
+                            type="text"
+                            name="descripcion"
+                            class="form-control"
+                     />
+                </div>
+                <div class="form-group">
+                    <label>Plazo de Reentrada</label>
+                    <input
+                            name="plazoReentrada"
+                            type="number"
                             class="form-control"
                             required/>
                 </div>
-                <br>
+                <div class="form-group">
+                    <label>Plazo de Recoleccion</label>
+                    <input
+                            name="plazoRecoleccion"
+                            type="number"
+                            class="form-control"
+                            required/>
+                </div>
                 <div class="control-group">
                     <div class="controls">
                         <button
@@ -68,7 +69,6 @@
                         </button>
                     </div>
                 </div>
-                <input type="hidden" name="id" th:attr="value = ${id}">
 				</form>
 			</div>
 		</div>
