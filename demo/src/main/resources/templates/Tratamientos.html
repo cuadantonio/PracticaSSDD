@@ -33,6 +33,20 @@
 					En esta página encontrarás todos los tratamientos con los que nuestros agricultores trabajan.
 					</p>
 					<br>
+					<form method="post" action="/filtradoPlazos">
+					<label for="start">Fecha para filtrar:</label>
+					<input type="date" id="fecha" name="fecha">
+					<button
+                                id="register"
+                                type="submit"
+                                class="btn btn-primary">Enviar
+                     </button>
+					</form>
+					<br/>
+					<a href="/tratamientoOrdenadosPorReentrada">Ordenar por fecha de plazo de reentrada</a>
+					<br/>
+					<a href="/tratamientoOrdenadosPorRecoleccion">Ordenar por fecha de plazo de recoleccion</a>
+					<br/>
 				<ul class="section">
 					<li th:each="tratamiento : ${tratamientos}">
 						<div>

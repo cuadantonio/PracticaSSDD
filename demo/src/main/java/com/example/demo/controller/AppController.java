@@ -33,12 +33,20 @@ public class AppController {
 	LocalDate date = LocalDate.of(2000, 10, 10);
 	@PostConstruct
 	public void init() {
-		Producto p = new Producto("producto","producto",10,10);
+		Producto p1 = new Producto("producto1","producto1",10,10);
+		Producto p2 = new Producto("producto2","producto2",20,20);
+		Producto p3 = new Producto("producto3","producto3",30,30);
+		Producto p4 = new Producto("producto3","producto3",0,40);
+		Producto p5 = new Producto("producto5","producto5",0,0);
 		Cultivo c = new Cultivo("especie","variedad",date,"zona",listat);
-		Tratamiento t = new Tratamiento(c,p,"2",date,date,date);
-		Tratamiento t2 = new Tratamiento(c,p,"23",date,date,date);
+		Tratamiento t = new Tratamiento(c,p1,"2",date,date,date);
+		Tratamiento t2 = new Tratamiento(c,p1,"23",date,date,date);
 		repCultivos.save(c);
-		repProductos.save(p);
+		repProductos.save(p1);
+		repProductos.save(p2);
+		repProductos.save(p3);
+		repProductos.save(p4);
+		repProductos.save(p5);
 		repTratamientos.save(t);
 		repTratamientos.save(t2);
 		c.getTratamientos().add(t);
@@ -190,5 +198,61 @@ public class AppController {
 		}
 		return "Productos";
 	}
+	
+	@RequestMapping("/cultivosOrdenados")
+	public String ordenarCultivos(Model model) {
+		List<Cultivo> lista = repCultivos.findByOrderByEspecie();
+		model.addAttribute("cultivos", lista);
+		return "Cultivos";
+	}
+	
+	@RequestMapping("/tratamientoOrdenadosPorReentrada")
+	public String ordenarTratamientosReentrada(Model model) {
+		List<Tratamiento> lista = repTratamientos.findByOrderByFechaPlazoReentrada();
+		model.addAttribute("tratamientos", lista);
+		return "Tratamientos";
+	}
+	
+	@RequestMapping("/tratamientoOrdenadosPorRecoleccion")
+	public String ordenarTratamientosRecoleccion(Model model) {
+		List<Tratamiento> lista = repTratamientos.findByOrderByFechaPlazoRecoleccion();
+		model.addAttribute("tratamientos", lista);
+		return "Tratamientos";
+	}
+	
+	@RequestMapping("/filtradoPlazos")
+	public String prueba(Model model, @RequestParam String fecha) {
+		DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+		LocalDate localDate = LocalDate.parse(fecha, formatter);
+		List<Tratamiento> lista = repTratamientos.findByFechaPlazoReentradaOrFechaPlazoRecoleccionGreaterThan(localDate,localDate);
+		model.addAttribute("tratamientos", lista);
+		return "Tratamientos";
+	}
+	
+	@RequestMapping("/editarproducto/{id}")
+    public String editarProducto(@PathVariable long id, Model model) {
+        model.addAttribute("id",id);
+        return "editarproducto";
+    }
+    @RequestMapping("/productoeditado")
+    public String productoEditado(@RequestParam String nombre,@RequestParam String descripcion,@RequestParam int plazoReentrada,@RequestParam int plazoRecoleccion,@RequestParam Long id, Model model) {
+        Optional<Producto> producto = repProductos.findById(id);
+        producto.get().setNombre(nombre);
+        producto.get().setDescripcion(descripcion);
+        producto.get().setPlazoRecoleccion(plazoRecoleccion);
+        producto.get().setPlazoReentrada(plazoReentrada);
+        repProductos.save(producto.get());
+        return "productoeditado";
+    }
+    @RequestMapping("/añadirproducto")
+    public String añadirProducto(Model model) {
+        return "añadirproducto";
+    }
+    @RequestMapping("/productoañadido")
+    public String productoAñadido(@RequestParam String nombre,@RequestParam String descripcion,@RequestParam int plazoReentrada,@RequestParam int plazoRecoleccion, Model model) {
+        Producto p = new Producto(nombre,descripcion,plazoReentrada,plazoRecoleccion);
+        repProductos.save(p);
+        return "productoañadido";
+    }
 }
 

@@ -33,12 +33,14 @@
                     <select name="producto">
                         <option th:each="producto : ${productos}"><span th:text="${producto.nombre}"></span></option>
                     </select>
+                    <a href="/añadirproducto">Añadir Producto</a>
                 </div>
                 <div class="form-group">
                     <label>Cultivo</label>
                     <select name="cultivo">
                         <option th:each="cultivo : ${cultivos}"><span th:text="${cultivo.especie}"></span></option>
                     </select>
+                    <a href="/añadircultivo">Añadir Cultivo</a>
                 </div>
                 
                 <div class="form-group">
