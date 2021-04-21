@@ -30,29 +30,66 @@ public class AppController {
 	@Autowired
 	private TratamientoRepository repTratamientos;
 	public LinkedList<Tratamiento> listat = new LinkedList<>();
+	public LinkedList<Tratamiento> listat2 = new LinkedList<>();
+	public LinkedList<Tratamiento> listat3 = new LinkedList<>();
+	public LinkedList<Tratamiento> listat4 = new LinkedList<>();
+	public LinkedList<Tratamiento> listat5 = new LinkedList<>();
+	public LinkedList<Tratamiento> listat6 = new LinkedList<>();
 	LocalDate date = LocalDate.of(2000, 10, 10);
+	LocalDate date2 = LocalDate.of(1999, 02, 15);
 	@PostConstruct
 	public void init() {
-		Producto p1 = new Producto("producto1","producto1",10,10);
-		Producto p2 = new Producto("producto2","producto2",20,20);
-		Producto p3 = new Producto("producto3","producto3",30,30);
-		Producto p4 = new Producto("producto3","producto3",0,40);
-		Producto p5 = new Producto("producto5","producto5",0,0);
-		Cultivo c = new Cultivo("especie","variedad",date,"zona",listat);
-		Tratamiento t = new Tratamiento(c,p1,"2",date,date,date);
-		Tratamiento t2 = new Tratamiento(c,p1,"23",date,date,date);
-		repCultivos.save(c);
+		Producto p1 = new Producto("producto 1","producto 1",10,10);
+		Producto p2 = new Producto("producto 2","producto 2",20,20);
+		Producto p3 = new Producto("producto 3","producto 3",30,30);
+		Producto p4 = new Producto("producto 4","producto 4",0,40);
+		Producto p5 = new Producto("producto 5","producto 5",0,0);
+		Cultivo c1 = new Cultivo("especie 1","variedad 1",date,"zona",listat);
+		Cultivo c2 = new Cultivo("especie 2","variedad 2",date,"zona",listat2);
+		Cultivo c3 = new Cultivo("especie 3","variedad 3",date,"zona",listat3);
+		Cultivo c4 = new Cultivo("especie 4","variedad 4",date,"zona",listat4);
+		Cultivo c5 = new Cultivo("especie 5","variedad 5",date,"zona",listat5);
+		Cultivo c6 = new Cultivo("especie 6","variedad 6",date,"zona",listat6);
+		Tratamiento t1 = new Tratamiento(c1,p1,"tratamiento 1",date,date,date);
+		Tratamiento t2 = new Tratamiento(c1,p2,"tratamiento 2",date2,date,date);
+		Tratamiento t3 = new Tratamiento(c2,p1,"tratamiento 3",date,date,date);
+		Tratamiento t4 = new Tratamiento(c2,p2,"tratamiento 4",date,date2,date2);
+		Tratamiento t5 = new Tratamiento(c2,p4,"tratamiento 5",date,date2,date2);
+		Tratamiento t6 = new Tratamiento(c3,p3,"tratamiento 6",date,date2,date2);
+		Tratamiento t7 = new Tratamiento(c4,p4,"tratamiento 7",date2,date2,date2);
+		Tratamiento t8 = new Tratamiento(c4,p5,"tratamiento 8",date2,date2,date2);
+		repCultivos.save(c1);
+		repCultivos.save(c2);
+		repCultivos.save(c3);
+		repCultivos.save(c4);
+		repCultivos.save(c5);
+		repCultivos.save(c6);
 		repProductos.save(p1);
 		repProductos.save(p2);
 		repProductos.save(p3);
 		repProductos.save(p4);
 		repProductos.save(p5);
-		repTratamientos.save(t);
+		repTratamientos.save(t1);
 		repTratamientos.save(t2);
-		c.getTratamientos().add(t);
-		c.getTratamientos().add(t2);
-		repCultivos.save(c);
-		
+		repTratamientos.save(t3);
+		repTratamientos.save(t4);
+		repTratamientos.save(t5);
+		repTratamientos.save(t6);
+		repTratamientos.save(t7);
+		repTratamientos.save(t8);
+		c1.getTratamientos().add(t1);
+		c1.getTratamientos().add(t2);
+		c2.getTratamientos().add(t3);
+		c2.getTratamientos().add(t4);
+		c2.getTratamientos().add(t5);
+		c3.getTratamientos().add(t6);
+		c4.getTratamientos().add(t7);
+		c5.getTratamientos().add(t8);
+		repCultivos.save(c1);
+		repCultivos.save(c2);
+		repCultivos.save(c3);
+		repCultivos.save(c4);
+		repCultivos.save(c5);
 	}
 	
 	@RequestMapping("/")
