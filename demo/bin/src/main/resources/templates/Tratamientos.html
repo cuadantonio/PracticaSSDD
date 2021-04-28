@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>News - Garden Walkthrough Website Template</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<a href="index.html" id="logo"><img src="images/logo.png" alt="Logo"></a>
+			<ul>
+				<li>
+					<a href="/">Home</a>
+				</li>
+				<li>
+					<a href="/cultivos">Cultivos</a>
+				</li>
+				<li>
+					<a href="/productos">Productos</a>
+				</li>
+				<li class="current">
+					<a href="/tratamientos">Tratamientos</a>
+				</li>
+			</ul>
+		</div>
+		<div id="body">
+			<div id="content">
+				<h1>Tratamientos</h1>
+				<h3><strong>Todos los productos de nuestras plantaciones</strong></h3>
+				<p>
+					En esta página encontrarás todos los tratamientos con los que nuestros agricultores trabajan.
+					</p>
+					<br>
+					<form method="post" action="/filtradoPlazos">
+					<label for="start">Fecha para filtrar:</label>
+					<input type="date" id="fecha" name="fecha">
+					<button
+                                id="register"
+                                type="submit"
+                                class="btn btn-primary">Enviar
+                     </button>
+					</form>
+					<br/>
+					<a href="/tratamientoOrdenadosPorReentrada">Ordenar por fecha de plazo de reentrada</a>
+					<br/>
+					<a href="/tratamientoOrdenadosPorRecoleccion">Ordenar por fecha de plazo de recoleccion</a>
+					<br/>
+				<ul class="section">
+					<li th:each="tratamiento : ${tratamientos}">
+						<div>
+							<a th:href="@{'/tratamientos/'+ ${tratamiento.id}}"><h2 th:text="${tratamiento.numeroLote}"></h2></a>
+							<br/>
+							<p th:text="'Producto relacionado: ' + ${tratamiento.producto.nombre}"></p>
+							<br/>
+							<p th:text="'Cultivo relacionado: ' + ${tratamiento.cultivo.especie}"></p>
+							<br/>
+							<p th:text="'Fecha realizacion: ' + ${tratamiento.fechaRealizacion}"></p>
+							<br/>
+							<p th:text="'Fecha plazo reentrada: ' + ${tratamiento.fechaPlazoReentrada}"></p>
+							<br/>
+							<p th:text="'Fecha plazo recoleccion: ' + ${tratamiento.fechaPlazoRecoleccion}"></p>
+							<br/>
+						</div>
+					</li>
+				</ul>
+				<a href="/añadirtratamiento">Añadir Tratamiento</a>
+			</div>
+		<div id="footer">
+			<div>
+				<div>
+					<h1>Connect</h1>
+					<a target="_blank" id="mail">Escríbenos</a>
+					<a target="_blank" id="facebook">Facebook</a>
+					<a target="_blank" id="twitter">Twitter</a>
+					<a target="_blank" id="googleplus">Google&#43;</a>
+				</div>
+			</div>
+			<p>
+				Garden Walkthrough &copy; 2021 | All Rights Reserved
+			</p>
+		</div>
+	</div>
+</body>
+</html>

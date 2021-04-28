@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<!-- Website template by freewebsitetemplates.com -->
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Cultivos - Garden Walkthrough Website Template</title>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body>
+	<div id="page">
+		<div id="header">
+			<a href="index.html" id="logo"><img src="images/logo.png" alt="Logo"></a>
+			<ul>
+				<li>
+					<a href="/">Home</a>
+				</li>
+				<li class="current">
+					<a href="/cultivos">Cultivos</a>
+				</li>
+				<li>
+					<a href="/productos">Productos</a>
+				</li>
+				<li>
+					<a href="/tratamientos">Tratamientos</a>
+				</li>
+			</ul>
+		</div>
+		<div id="body">
+			<div id="content">
+				<h1>Cultivos</h1>
+				<h3><strong>Todos los cultivos de nuestras plantaciones</strong></h3>
+				<p>
+					En esta página encontrarás todos los cultivos con los que nuestros agricultores trabajan. Actualmente contamos con tres fantásticos tipos de plantaciones que alimentan de productos a sus supermercados favoritos.
+					</p>
+				<br/>
+				<br/>
+				<a href="/cultivosOrdenados">Ordenar por especies</a>
+				<br/>
+				<ul class="section">
+					<li th:each="cultivo : ${cultivos}">
+						<div>
+							<a th:href="@{'/cultivos/'+ ${cultivo.id}}"><h2 th:text="${cultivo.especie}"></h2></a>
+							<br/>
+							<p th:text="'Variedad: ' + ${cultivo.variedad}"></p>
+							<br/>
+							<p th:text="'Fecha: ' + ${cultivo.fecha}"></p>
+							<br/>
+							<p th:text="'Zona: ' + ${cultivo.zona}"></p>
+							<br/>
+						</div>
+					</li>
+				</ul>
+				<a href="/añadircultivo">Añadir Cultivo</a>
+			</div>
+		</div>
+		<div id="footer">
+			<div>
+				<div>
+					<h1>Connect</h1>
+					<a target="_blank" id="mail">Escríbenos</a>
+					<a target="_blank" id="facebook">Facebook</a>
+					<a target="_blank" id="twitter">Twitter</a>
+					<a target="_blank" id="googleplus">Google&#43;</a>
+				</div>
+			</div>
+			<p>
+				Garden Walkthrough &copy; 2021 | All Rights Reserved
+			</p>
+		</div>
+	</div>
+</body>
+</html>
